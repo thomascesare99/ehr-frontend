@@ -1,59 +1,74 @@
-# EhrFrontend
+# 🏥 EHR Frontend (Electronic Health Record)
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.0.4.
+A modern, responsive Electronic Health Record (EHR) web application built with **Angular 18+** and **Angular Material**. This project simulates a real-world healthcare system for managing patients, hospital admissions, and clinical history.
 
-## Development server
+![Project Status](https://img.shields.io/badge/Status-In%20Development-orange)
+![Angular](https://img.shields.io/badge/Angular-18+-dd0031?logo=angular)
+![License](https://img.shields.io/badge/License-MIT-blue)
 
-To start a local development server, run:
+---
 
-```bash
-ng serve
-```
+## 📖 Table of Contents
+- [About the Project](#-about-the-project)
+- [Key Features](#-key-features)
+- [Tech Stack](#-tech-stack)
+- [Project Architecture](#-project-architecture)
+- [Getting Started](#-getting-started)
+- [Roadmap](#-roadmap)
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+---
 
-## Code scaffolding
+## 🩺 About the Project
+This application serves as the user interface for a hospital management system. It is designed to be **clean, fast, and accessible**. 
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+Currently, the application runs in **Mock Mode**, using in-memory services to simulate data persistence. It is architected to be easily connected to a real backend (NestJS/.NET) by simply replacing the service logic.
 
-```bash
-ng generate component component-name
-```
+---
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+## ✨ Key Features
 
-```bash
-ng generate --help
-```
+### 👤 Patient Management
+- **Directory:** View a searchable, sortable list of all patients using robust Data Tables.
+- **Profiles:** Detailed patient cards showing demographic data (Fiscal Code, DOB, Contact).
+- **CRUD Operations:** - **Create:** Add new patients with validation-rich Reactive Forms.
+  - **Edit:** "Upsert" logic allowing seamless updates to existing records.
+  - **Validation:** Real-time feedback for required fields and data formats.
 
-## Building
+### 🏥 Hospitalization & History
+- **Medical Timeline:** Track patient admissions and discharges.
+- **Status Tracking:** Visual "Traffic Light" system for **Active** (Green) vs **Discharged** (Gray) status.
+- **Admissions:** Streamlined modal dialogs (`MatDialog`) for quick patient intake.
+- **Ward Management:** Assign patients to specific departments (Surgery, Cardiology, etc.).
 
-To build the project run:
+---
 
-```bash
-ng build
-```
+## 🛠 Tech Stack
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+| Category | Technology | Usage |
+| :--- | :--- | :--- |
+| **Framework** | [Angular 18+](https://angular.dev/) | Standalone Components, Signals, Routing |
+| **UI Library** | [Angular Material](https://material.angular.io/) | Tables, Cards, Dialogs, Forms, Chips |
+| **Styling** | SCSS | Flexbox layouts, Custom Theming, Responsive Design |
+| **Forms** | Reactive Forms | Complex validation, Custom validators |
+| **State/Data** | RxJS | Observables for asynchronous data handling |
 
-## Running unit tests
+---
 
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+## 🏗 Project Architecture
 
-```bash
-ng test
-```
+The project follows a **Feature-Based Architecture** to ensure scalability and separation of concerns.
 
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+```text
+src/app
+├── core/                 # Singleton services, guards, interceptors
+├── features/             # Business logic modules
+│   ├── patients/         # Patient CRUD logic
+│   │   ├── pages/        # List, Detail, Create components
+│   │   ├── services/     # Patient data fetching
+│   │   └── models/       # TypeScript Interfaces
+│   │
+│   └── hospitalizations/ # Admission logic
+│       ├── pages/        # History list
+│       └── components/   # Dialogs (e.g., Admission Form)
+│
+└── shared/               # Reusable UI components & pipes
