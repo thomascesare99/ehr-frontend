@@ -1,0 +1,44 @@
+<div class="container">
+
+  <div class="header-actions">
+    <h1>Patients Directory</h1>
+    <button mat-raised-button color="primary" [routerLink]="['/patients/new']">
+      <mat-icon>add</mat-icon> Add Patient
+    </button>
+  </div>
+
+  <table mat-table [dataSource]="patients" class="mat-elevation-z8">
+
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef> Name </th>
+      <td mat-cell *matCellDef="let patient">
+        <strong>{{ patient.lastName }}</strong> {{ patient.firstName }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="fiscalCode">
+      <th mat-header-cell *matHeaderCellDef> Fiscal Code </th>
+      <td mat-cell *matCellDef="let patient"> {{ patient.fiscalCode }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="dob">
+      <th mat-header-cell *matHeaderCellDef> Date of Birth </th>
+      <td mat-cell *matCellDef="let patient"> {{ patient.dateOfBirth | date }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef> Actions </th>
+      <td mat-cell *matCellDef="let patient">
+        <button mat-icon-button color="primary" [routerLink]="['/patients', patient.id]">
+          <mat-icon>visibility</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+  </table>
+
+</div>

@@ -1,0 +1,70 @@
+<div class="container">
+
+  <div *ngIf="isLoading" class="loading-container">
+    <mat-spinner diameter="50"></mat-spinner>
+  </div>
+
+  <mat-card *ngIf="!isLoading && patient" class="patient-card">
+
+    <mat-card-header>
+      <div mat-card-avatar class="header-image">
+        <mat-icon>person</mat-icon>
+      </div>
+      <mat-card-title>{{ patient.lastName }} {{ patient.firstName }}</mat-card-title>
+      <mat-card-subtitle>Patient ID: #{{ patient.id }}</mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-divider></mat-divider>
+
+    <mat-card-content>
+      <div class="details-grid">
+
+        <div class="detail-item">
+          <span class="label">Fiscal Code</span>
+          <span class="value">{{ patient.fiscalCode }}</span>
+        </div>
+
+        <div class="detail-item">
+          <span class="label">Date of Birth</span>
+          <span class="value">{{ patient.dateOfBirth | date:'longDate' }}</span>
+        </div>
+
+        <div class="detail-item">
+          <span class="label">Sex</span>
+          <span class="value">{{ patient.sex === 'M' ? 'Male' : patient.sex === 'F' ? 'Female' : 'Other' }}</span>
+        </div>
+
+        <div class="detail-item">
+          <span class="label">Contact</span>
+          <span class="value">{{ patient.email || 'N/A' }}</span>
+        </div>
+
+      </div>
+    </mat-card-content>
+
+    <mat-divider></mat-divider>
+
+    <mat-card-actions align="end">
+      <button mat-button [routerLink]="['/patients']">
+        Back to List
+      </button>
+
+      <button mat-flat-button color="primary" [routerLink]="['/patients', patient.id, 'edit']">
+        <mat-icon>edit</mat-icon> Edit Patient
+      </button>
+
+      <button mat-stroked-button color="accent" [routerLink]="['/patients', patient.id, 'hospitalizations']">
+        <mat-icon>history</mat-icon> History
+      </button>
+    </mat-card-actions>
+
+  </mat-card>
+
+  <div *ngIf="!isLoading && !patient" class="not-found">
+    <h2>Patient not found</h2>
+    <button mat-raised-button color="primary" [routerLink]="['/patients']">
+      Go Home
+    </button>
+  </div>
+
+</div>

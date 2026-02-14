@@ -1,0 +1,64 @@
+.container {
+  display: flex;
+  justify-content: center;
+  padding: 40px 20px;
+}
+
+.loading-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+.patient-card {
+  width: 100%;
+  max-width: 600px;
+}
+
+// Avatar styling
+.header-image {
+  background-color: #e0e0e0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  mat-icon {
+    color: #757575;
+  }
+}
+
+// Content styling
+mat-card-content {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.details-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr; // Two columns
+  gap: 24px;
+
+  @media (max-width: 500px) {
+    grid-template-columns: 1fr; // Stack on mobile
+  }
+}
+
+.detail-item {
+  display: flex;
+  flex-direction: column;
+
+  .label {
+    font-size: 0.85rem;
+    color: #757575; // Gray text for labels
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 4px;
+  }
+
+  .value {
+    font-size: 1.1rem;
+    color: #333;
+    font-weight: 400;
+  }
+}
