@@ -1,0 +1,35 @@
+<h2 mat-dialog-title>New Hospital Admission</h2>
+
+    <mat-dialog-content>
+      <form [formGroup]="form" class="admission-form">
+
+        <mat-form-field appearance="fill">
+          <mat-label>Admission Date</mat-label>
+          <input matInput [matDatepicker]="picker" formControlName="admissionDate">
+          <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Ward / Department</mat-label>
+          <mat-select formControlName="ward">
+            <mat-option value="Emergency">Emergency</mat-option>
+            <mat-option value="Cardiology">Cardiology</mat-option>
+            <mat-option value="Surgery">Surgery</mat-option>
+            <mat-option value="Pediatrics">Pediatrics</mat-option>
+            <mat-option value="Neurology">Neurology</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Reason for Admission</mat-label>
+          <textarea matInput formControlName="reason" rows="3" placeholder="e.g. Chest pain, High fever..."></textarea>
+        </mat-form-field>
+
+      </form>
+    </mat-dialog-content>
+
+    <mat-dialog-actions align="end">
+      <button mat-button mat-dialog-close>Cancel</button>
+      <button mat-raised-button color="primary" [disabled]="form.invalid" (click)="save()">Admit Patient</button>
+    </mat-dialog-actions>
